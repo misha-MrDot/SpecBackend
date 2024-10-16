@@ -1,9 +1,10 @@
 package com.example.demka.controllers
 
 import com.example.demka.dto.CreateSpecRq
+import com.example.demka.dto.CreateSpecRq2
 import com.example.demka.dto.SpecRs
 import com.example.demka.mappers.toDto
-import com.example.demka.models.SpecEntity
+import com.example.demka.models.SpecialistEntity
 import com.example.demka.repository.SpecRepository
 import com.example.demka.services.SpecService
 import org.springframework.data.repository.findByIdOrNull
@@ -22,7 +23,10 @@ class SpecController(private val specService: SpecService) {
     fun create(@RequestBody spec: CreateSpecRq) {
         specService.create(spec)
     }
-
+    @PostMapping("/create")
+    fun cerate_spec(@RequestBody spec: CreateSpecRq2){
+        specService.create_spec(spec)
+    }
     @GetMapping("")
     fun getAll(): List<SpecRs> = specService.getAll()
 
