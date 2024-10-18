@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица с заголовком</title>
+    <style>
+        table {
+            border-collapse: collapse; /* Убирает двойные линии между ячейками */
+            width: 100%; /* Задает ширину таблицы */
+        }
+        th, td {
+            border: 1px solid black; /* Черные бортики для ячеек */
+            padding: 8px; /* Отступы внутри ячеек */
+            text-align: left; /* Выравнивание текста в ячейках */
+        }
+        th {
+            background-color: blue; /* Синий цвет для заголовка */
+            color: white; /* Белый цвет текста в заголовке */
+        }
+
+    </style>
+</head>
+<body>
+<h1>Специалисты</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>title</th>
+        <th>description</th>
+        <th>photo</th>
+
+    </tr>
+    <tr  th:each="spec:${specialists}">
+        <td th:text="${spec.id}"></td>
+        <td><a href="specform.html" th:text="${spec.title}" th:href="@{/{specId}(specId=${spec.id})}"></a></td>
+        <td th:text="${spec.description}"></td>
+        <td><img th:src="${spec.photoUrl}" width="200px" height="200px"></td>
+    </tr>
+</table>
+<script>
+</script>
+</body>
+</html>

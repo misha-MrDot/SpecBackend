@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title th:text="${specialist.title}"></title>
+</head>
+<body>
+<img th:src="${specialist.photoUrl}" alt="" width="400px" height="400px">
+<p th:text="${specialist.title}">Name: </p>
+<p th:text="${specialist.description}">Description: </p>
+<p>Форма для добавления записи</p>
+
+
+
+<!--<form th:object="${formRecord}" th:action="@{/record/{specId}(specId=${specialist.id})}" method="post">-->
+<!--    <div>-->
+
+<!--        <label for="dateTitle">-->
+<!--            <select th:field="*{dateTitle}" id="dateTitle">-->
+<!--                <option th:each="date : ${specialist.dates}"-->
+<!--                        th:value="${date}"-->
+<!--                        th:text="${date}">-->
+<!--                </option>-->
+<!--            </select>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="dateTime">-->
+<!--            <select th:field="*{dateTime}" id="dateTime">-->
+<!--                <option th:each="time : ${datesSpec}"-->
+<!--                        th:value="${time}"-->
+<!--                        th:text="${time}">-->
+<!--                </option>-->
+<!--            </select>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="email"></label>-->
+<!--        <input id="email" type="email" th:field="*{email}">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="phoneNumber"></label>-->
+<!--        <input id="phoneNumber" type="text" th:field="*{phoneNumber}">-->
+<!--    </div>-->
+<!--&lt;!&ndash;    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <label for="dateTitle"></label>&ndash;&gt;-->
+<!--&lt;!&ndash;        <input id="dateTitle" type="text" th:field="*{dateTitle}">&ndash;&gt;-->
+<!--&lt;!&ndash;        <p th:if="${#fields.hasErrors('dateTitle')}"&ndash;&gt;-->
+<!--&lt;!&ndash;           th:text="${#strings.listJoin(#fields.errors('dateTitle'), ', ')}"></p>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+<!--    <input type="submit" value="Submit"/>-->
+
+
+<!--</form>-->
+
+</body>
+</html>

@@ -42,4 +42,11 @@ class SpecService(
 
    @Transactional
    fun getAll(): List<SpecRs> = specRepository.findAll().toList().map { it.toDto() }
+
+    @Transactional
+    fun delete(id: String) {
+        specRepository.deleteById(id)
+    }
+
+
 }
