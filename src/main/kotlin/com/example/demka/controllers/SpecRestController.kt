@@ -15,13 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RestController
 @RequestMapping("/api/spec")
 class SpecRestController(private val specService: SpecService) {
-    @PostMapping
+    @PostMapping("")
     fun create(@RequestBody spec: CreateSpecRq) {
         specService.create(spec)
-    }
-    @PostMapping("/create")
-    fun cerate_spec(@RequestBody spec: CreateSpecRq2){
-        specService.create_spec(spec)
     }
     @GetMapping("")
     fun getAll(): List<SpecRs> = specService.getAll()

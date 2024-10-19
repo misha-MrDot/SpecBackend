@@ -10,6 +10,7 @@ class SpecialistEntity(
     val title: String,
     val description: String,
     val photoUrl: String,
+    val type: String,
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL], orphanRemoval = true )
     var dates: MutableList<Date> = mutableListOf(),
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL], orphanRemoval = true )

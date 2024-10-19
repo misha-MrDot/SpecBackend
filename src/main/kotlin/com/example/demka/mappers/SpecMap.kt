@@ -8,5 +8,6 @@ fun SpecialistEntity.toDto() = SpecRs(
     title=title,
     description = description,
     photoUrl=photoUrl,
+    type=type,
     dates = dates,
 )

@@ -1,6 +1,8 @@
 package com.example.demka.controllers
 
 import com.example.demka.dto.CreateRecordForm
+import com.example.demka.models.Date
+import com.example.demka.services.RecordService
 import com.example.demka.services.SpecService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 
 @Controller
-class SpecController(private val specService: SpecService) {
+class SpecController(private val specService: SpecService,private val recordService: RecordService) {
     @GetMapping("/")
     fun home(model:Model):String{
 

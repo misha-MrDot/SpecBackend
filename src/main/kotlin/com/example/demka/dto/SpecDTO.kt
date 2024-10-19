@@ -8,6 +8,7 @@ class CreateSpecRq(
     val title: String,
     val description: String,
     val photoUrl: String,
+    val type: String,
     val dates: MutableList<Date>,
 )
 
@@ -22,5 +23,6 @@ class SpecRs(
     val title: String,
     val description: String,
     val photoUrl: String,
+    val type:String,
     val dates: MutableList<Date>,
 )

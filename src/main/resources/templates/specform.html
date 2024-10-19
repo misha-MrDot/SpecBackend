@@ -6,12 +6,80 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title th:text="${specialist.title}"></title>
+    <style>
+        ul {
+            list-style-type: none; /* Убирает буллиты */
+        }
+        .container{
+
+            display: flex;
+
+            flex-direction: row;
+
+            justify-content: flex-start;
+
+            border: 5px solid black;
+
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
 <img th:src="${specialist.photoUrl}" alt="" width="400px" height="400px">
 <p th:text="${specialist.title}">Name: </p>
 <p th:text="${specialist.description}">Description: </p>
+<p th:text="${specialist.type}"></p>
 <p>Форма для добавления записи</p>
+<form th:action="@{/record/{specId}(specId=${specialist.id})}" method="post">
+<!--    <div>-->
+<!--        <label for="dateTitle">-->
+<!--            <select th:name="dateTitle" id="dateTitle">-->
+<!--                <option th:each="date : ${specialist.dates}"-->
+<!--                        th:value="nl"-->
+<!--                        th:text="${date}">-->
+<!--                </option>-->
+<!--            </select>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="dateTime">-->
+<!--            <select th:name="dateTime" id="dateTime" th:each="date:${datesSpec}">-->
+<!--                <option th:each="time : ${date.times}"-->
+<!--                        th:value="${time}"-->
+<!--                        th:text="${time}">-->
+<!--                </option>-->
+<!--            </select>-->
+<!--        </label>-->
+<!--    </div>-->
+    <p><b>Выберите дату:</b></p>
+    <ul th:each="date:${datesSpec}">
+        <li>
+            <div class="container">
+                <input id="dateTitle" th:name="dateTitle" type="radio" th:value="${date.title}">
+                <p th:text="${date.title}"></p>
+            </div>
+
+            <ul th:each="time:${date.times}">
+                <li>
+                    <div class="container">
+                        <input id="dateTime" th:name="dateTime" type="radio" th:value="${time}">
+                        <p th:text="${time}"></p>
+                    </div>
+
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div>
+        <label for="email"></label>
+        <input type="email" th:name="email" id="email">
+    </div>
+    <div>
+        <label for="phoneNumber"></label>
+        <input type="text" th:name="phoneNumber" id="phoneNumber">
+    </div>
+    <input type="submit"/>
+</form>
 
 
 

@@ -17,20 +17,13 @@ class SpecService(
     private val specRepository: SpecRepository
 ) {
     @Transactional
-    fun create_spec(dto:CreateSpecRq2){
-        specRepository.save(SpecialistEntity(
-            title = dto.title,
-            description = dto.description,
-            photoUrl = dto.photoUrl
-        ))
-    }
-    @Transactional
     fun create(dto: CreateSpecRq) {
         specRepository.save(
             SpecialistEntity(
                 title = dto.title,
                 description = dto.description,
                 photoUrl = dto.photoUrl,
+                type = dto.type,
                 dates = dto.dates,
             )
         )
