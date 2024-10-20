@@ -22,7 +22,23 @@ class SpecController(private val specService: SpecService,private val recordServ
     @GetMapping("/{specId}")
     fun getById(@PathVariable specId: String, model: Model): String{
         model.addAttribute("specialist",specService.getById(specId))
-        model.addAttribute("datesSpec",specService.getById(specId).dates)
+        val specDates:List<Date> = specService.getById(specId).dates
+        for (record in recordService.getAll()){
+            for (date in specDates){
+                if (date.title==record.dateTitle){
+                    for (time in date.times){
+                        if (time==record.dateTime){
+//                            println(specDates.get(specDates.indexOf(date)).times)
+//                            println(specDates.get(specDates.indexOf(date)).times.filter { it != time })
+                            specDates.get(specDates.indexOf(date)).times = specDates.get(specDates.indexOf(date)).times.filter { it != time }
+                        }
+                    }
+                }
+            }
+        }
+//        println(recordService.getAll().map { it.dateTime })
+//        println(specDates.map { it.times })
+        model.addAttribute("datesSpec",specService.getById(specId).dates.filter { it.times.isEmpty().not() })
         return "specform"
     }
 }

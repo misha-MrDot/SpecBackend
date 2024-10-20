@@ -27,7 +27,7 @@ class Date(
     val title:String,
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "date_time", joinColumns = [JoinColumn(name = "date_id")])
-    val times: List<String>,
+    var times: List<String>,
 
 ){
 
