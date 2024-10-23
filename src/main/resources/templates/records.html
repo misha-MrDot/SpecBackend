@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Записи</title>
+  <style>
+    table {
+      border-collapse: collapse; /* Убирает двойные линии между ячейками */
+      width: 100%; /* Задает ширину таблицы */
+    }
+    th, td {
+      border: 1px solid black; /* Черные бортики для ячеек */
+      padding: 8px; /* Отступы внутри ячеек */
+      text-align: left; /* Выравнивание текста в ячейках */
+    }
+    th {
+      background-color: blue; /* Синий цвет для заголовка */
+      color: white; /* Белый цвет текста в заголовке */
+    }
+
+  </style>
+</head>
+<body>
+<h1>Записи</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>dateTitle</th>
+    <th>dateTime</th>
+    <th>email</th>
+    <th>phoneNumber</th>
+    <th>specId</th>
+    <th>done</th>
+
+  </tr>
+  <tr  th:each="record:${records}">
+    <td th:text="${record.id}"></td>
+    <td th:text="${record.dateTitle}"></td>
+    <td th:text="${record.dateTime}"></td>
+    <td th:text="${record.email}"></td>
+    <td th:text="${record.phoneNumber}"></td>
+    <td th:text="${record.specId}"></td>
+    <td>
+      <form th:action="@{/record/update/{recordId}(recordId=${record.id})}" method="post">
+        <label for="done">True</label>
+        <input type="radio" id="done" th:name="done" th:value="true">
+        <label for="done2">False</label>
+        <input type="radio" id="done2" th:name="done" th:value="false">
+        <input type="submit"/>
+      </form>
+
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -21,5 +21,6 @@ class RecordRs(
     val dateTime: String,
     val email: String,
     val phoneNumber: String,
-    val specId:String
+    val specId:String,
+    var done:Boolean,
 )

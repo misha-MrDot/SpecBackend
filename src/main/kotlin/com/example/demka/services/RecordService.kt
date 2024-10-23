@@ -7,12 +7,17 @@ import com.example.demka.models.RecordEntity
 import com.example.demka.repository.RecordEntityRepository
 import com.example.demka.repository.SpecRepository
 import jakarta.transaction.Transactional
+import org.springframework.core.env.Environment
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import ru.umom.hackaton.shared.errors.common.NotFoundError
 
 @Service
-class RecordService(private val recordEntityRepository: RecordEntityRepository,private val specRepository: SpecRepository) {
+class RecordService(
+    private val recordEntityRepository: RecordEntityRepository,
+    private val specRepository: SpecRepository,
+    private val environment: Environment
+) {
     @Transactional
     fun getAll(): List<RecordRs> = recordEntityRepository.findAll().map { it.toDto() }
     @Transactional
@@ -26,12 +31,20 @@ class RecordService(private val recordEntityRepository: RecordEntityRepository,p
                 dateTime = dto.dateTime,
                 email = dto.email,
                 phoneNumber = dto.phoneNumber,
-                specialistEntity = specRepository.findByIdOrNull(dto.specId)
+                specialistEntity = specRepository.findByIdOrNull(dto.specId),
+                done = false
             )
         )
     }
     @Transactional
     fun delete(recordId:String){
         recordEntityRepository.deleteById(recordId)
+    }
+    @Transactional
+    fun update(recordId: String,done:Boolean){
+        val recordUpdate:RecordEntity = recordEntityRepository.findByIdOrNull(recordId)?:throw RuntimeException("record not found")
+        recordUpdate.done = done
+        recordEntityRepository.save(recordUpdate)
+
     }
 }

@@ -13,6 +13,7 @@ class RecordEntity(
     val dateTime:String,
     val email:String,
     val phoneNumber:String,
+    var done:Boolean,
 
     )
 {

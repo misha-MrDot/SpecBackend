@@ -3,6 +3,7 @@ package com.example.demka.controllers
 import com.example.demka.dto.CreateRecordForm
 import com.example.demka.dto.CreateRecordRq
 import com.example.demka.dto.RecordRs
+import com.example.demka.models.Date
 import com.example.demka.models.RecordEntity
 import com.example.demka.services.RecordService
 import org.springframework.stereotype.Controller
@@ -27,5 +28,17 @@ class RecordController(private val recordService: RecordService) {
             specId=specId,
         ))
         return "redirect:/"
+    }
+    @GetMapping("/all")
+    fun allRecord(model: Model):String{
+
+        model.addAttribute("records",recordService.getAll())
+        return "records"
+    }
+    @PostMapping("/update/{recordId}")
+    fun update(@RequestParam(value = "done", required = false) done:Boolean,@PathVariable recordId: String):String{
+        println(done)
+        recordService.update(recordId,done)
+        return "redirect:/record/all"
     }
 }

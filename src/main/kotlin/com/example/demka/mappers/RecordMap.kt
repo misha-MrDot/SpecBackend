@@ -11,5 +11,6 @@ fun RecordEntity.toDto() = RecordRs(
     dateTime=dateTime,
     email=email,
     phoneNumber=phoneNumber,
-    specId = specialistEntity!!.id
+    specId = specialistEntity!!.id,
+    done = done,
 )
